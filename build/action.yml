@@ -26,6 +26,6 @@ runs:
     - --context=${{ inputs.context }}
     - --dockerfile=${{ inputs.dockerfile }}
     - --destination=${{ inputs.tag }}
-    - --digest-file /dev/termination-log
+    - --digest-file=/dev/termination-log
     - --reproducible
     - ${{ inputs.args }}

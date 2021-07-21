@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Docker Build via Kaniko
-      uses: eeveebank/github-actions-snyk/docker@master
+      uses: eeveebank/github-actions-docker/build@master
       with:
         image: your/image-to-build
 ```
