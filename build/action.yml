@@ -1,0 +1,31 @@
+name: "Kaniko Docker Build"
+description: "Builds docker without escalated privileges"
+branding:
+  icon: "anchor"
+  color: "blue"
+inputs:
+  dockerfile:
+    required: false
+    description: "Dockerfile to build"
+    default: Dockerfile
+  context:
+    required: false
+    description: "Build context"
+    default: .
+  args:
+    required: false
+    description: "Extra arguments to pass to the executor"
+    default: ""
+  tag:
+    required: true
+    description: "Image tag"
+runs:
+  using: "docker"
+  image: "docker://eu.gcr.io/mettle-bank/kaniko-project/executor:v1.6.0@sha256:838df02bf73b5a3419249e017455418d78eab3074912a390759e4dac850404ac"
+  args:
+    - --context=${{ inputs.context }}
+    - --dockerfile=${{ inputs.dockerfile }}
+    - --destination=${{ inputs.tag }}
+    - --digest-file /dev/termination-log
+    - --reproducible
+    - ${{ inputs.args }}
